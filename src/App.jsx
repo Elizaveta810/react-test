@@ -19,7 +19,19 @@ const statusList = [
 ];
 
 function App() {
-  const [count, setCount] = useState(0);
+   const [count, setCount] = useState(0);
+  const [cards, setCards] = useState(cardList);
+  function addCard() {
+    // Логика добавления карточки
+    const newCard = {
+      id: cards.length + 1,
+      theme: "Web Design",
+      title: "Название задачи",
+      date: "30.10.23",
+      status: "Без статуса",
+    };
+    setCards([...cards, newCard]);
+  }
 
   return (
     <>
@@ -28,13 +40,13 @@ function App() {
         <PopBrowse />
         <PopNewCard />
 
-        <Header />
+        <Header addCard={addCard} />
         <MainContent>
           {statusList.map((status) => (
             <Column
               title={status}
               key={status}
-              cardList={cardList.filter((card) => card.status === status)}
+              cardList={cards.filter((card) => card.status === status)}
             />
           ))}
           {/*<Column title={"Без статуса"} />
