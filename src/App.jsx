@@ -8,6 +8,7 @@ import PopNewCard from "./components/popups/PopNewCard/PopNewCard";
 import Header from "./components/Header/Header";
 import Column from "./components/Column/Column";
 import MainContent from "./components/MainContent/MainContent";
+import { cardList } from "./date";
 
 const statusList = [
   "Без статуса",
@@ -30,7 +31,11 @@ function App() {
         <Header />
         <MainContent>
           {statusList.map((status) => (
-            <Column title={status} key={status} />
+            <Column
+              title={status}
+              key={status}
+              cardList={cardList.filter((card) => card.status === status)}
+            />
           ))}
           {/*<Column title={"Без статуса"} />
           <Column title={"Нужно сделать"} />
