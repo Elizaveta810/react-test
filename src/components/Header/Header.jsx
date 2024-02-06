@@ -1,5 +1,5 @@
 import { useState } from "react";
-import ModalWindow from "../ModalWindow/ModalWindow";
+import PopUser from "../popups/PopUser/PopUser";
 
 
 function Header({addCard}) {
@@ -29,7 +29,7 @@ function Header({addCard}) {
               Ivan Ivanov
             </div>
             {isOpened && (
-             <ModalWindow />
+             <PopUser/>
             )}
           </nav>
         </div>

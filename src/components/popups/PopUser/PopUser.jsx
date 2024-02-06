@@ -1,4 +1,4 @@
-function ModalWindow () {
+function PopUser () {
   return(<div className="header__pop-user-set pop-user-set" id="user-set-target">
   {/* <a href="">x</a> */}
   <p className="pop-user-set__name">Ivan Ivanov</p>
@@ -14,4 +14,4 @@ function ModalWindow () {
   )
 } 
 
-export default ModalWindow;
+export default PopUser;
