@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
@@ -8,30 +8,64 @@ import PopNewCard from "./components/popups/PopNewCard/PopNewCard";
 import Header from "./components/Header/Header";
 import Column from "./components/Column/Column";
 import MainContent from "./components/MainContent/MainContent";
+import { cardList } from "./date";
+
+const statusList = [
+  "Без статуса",
+  "Нужно сделать",
+  "В работе",
+  "Тестирование",
+  "Готово",
+];
 
 function App() {
   const [count, setCount] = useState(0);
+  const [cards, setCards] = useState(cardList);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000); // 2 секунды задержки
+  }, []); // Пустой массив зависимостей для запуска только при монтировании компонента
+
+  function addCard() {
+    // Логика добавления карточки
+    const newCard = {
+      id: cards.length + 1,
+      theme: "Web Design",
+      title: "Название задачи",
+      date: "30.10.23",
+      status: "Без статуса",
+    };
+    setCards([...cards, newCard]);
+  }
 
   return (
     <>
-    
       <div className="wrapper">
         <PopExit />
         <PopBrowse />
         <PopNewCard />
 
-        <Header />
-        <MainContent>
-          <Column title={"Без статуса"} />
-          <Column title={"Нужно сделать"} />
-          <Column title={"В работе"} />
-          <Column title={"Тестирование"} />
-          <Column title={"Готово"} />
-        </MainContent>
+        <Header addCard={addCard} />
+        {isLoading ? (
+          "Пожалуйста подождите, идет загрузка..."
+        ) : (
+          <MainContent>
+            {statusList.map((status) => (
+              <Column
+                title={status}
+                key={status}
+                cardList={cards.filter((card) => card.status === status)}
+              />
+            ))}
+          </MainContent>
+        )}
       </div>
 
       <div>
-        <a href="https://vitejs.dev" >
+        <a href="https://vitejs.dev">
           <img src={viteLogo} className="logo" alt="Vite logo" />
         </a>
         <a href="https://react.dev">
