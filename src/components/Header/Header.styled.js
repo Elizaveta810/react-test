@@ -1,7 +1,6 @@
 import { styled } from "styled-components";
 
-export const StyledHeader = styled.header`
-  width: 100%;
+export const StyledHeader = styled.header` 
   margin: 0 auto;
   background-color: #ffffff;
 `;
