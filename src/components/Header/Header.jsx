@@ -1,5 +1,6 @@
 import { useState } from "react";
 import PopUser from "../popups/PopUser/PopUser";
+import { StyledHeader } from "./Header.styled";
 
 
 function Header({addCard}) {
@@ -8,7 +9,7 @@ function Header({addCard}) {
     setIsOpened((prev) => !prev);
   }
   return (
-    <header className="header">
+    <StyledHeader>
       <div className="container">
         <div className="header__block">
           <div className="header__logo _show _light">
@@ -34,7 +35,7 @@ function Header({addCard}) {
           </nav>
         </div>
       </div>
-    </header>
+    </StyledHeader>
   );
 }
 export default Header;
