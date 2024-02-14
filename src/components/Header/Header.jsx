@@ -1,6 +1,10 @@
 import { useState } from "react";
 import PopUser from "../popups/PopUser/PopUser";
-import { StyledHeader } from "./Header.styled";
+/* Если в файле несколько Styled Components, которые мы хотим импортировать, то не нужно их писать все через запятую,
+ т.к. их может быть много. Поэтому используем такую запись 
+ (* - означает импортируй вообще все от куда то....  as - означает краткое название по которому мы будем обращать ко всему,что в этом файле есть, 
+  а через точку мы обрачаемся к каким то конкретным вещам. ) */
+import * as S from "./Header.styled";
 import { Container } from "../../styled/common/Common.styled";
 
 
@@ -10,9 +14,9 @@ function Header({ addCard }) {
     setIsOpened((prev) => !prev);
   }
   return (
-    <StyledHeader>
+    <S.StyledHeader>
       <Container>
-        <div className="header__block">
+        <S.HeaderBlock>
           <div className="header__logo _show _light">
             <a href="" target="_self">
               <img src="images/logo.png" alt="logo" />
@@ -36,9 +40,9 @@ function Header({ addCard }) {
             </div>
             {isOpened && <PopUser />}
           </nav>
-        </div>
+        </S.HeaderBlock>
       </Container>
-    </StyledHeader>
+    </S.StyledHeader>
   );
 }
 export default Header;
