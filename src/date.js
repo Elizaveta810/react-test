@@ -29,7 +29,7 @@ export const cardList = [
   },
 {
     id: 5,
-    theme: "Copywriting",
+    theme: "Default",
     title: "Название задачи",
     date: "30.10.23",
     status: "Готово",
