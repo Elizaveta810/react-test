@@ -22,7 +22,7 @@ const statusList = [
   "Готово",
 ];
 
-function App() {
+function MainPage() {
   const [count, setCount] = useState(0);
   const [cards, setCards] = useState(cardList);
   const [isLoading, setIsLoading] = useState(true);
@@ -92,4 +92,4 @@ function App() {
   );
 }
 
-export default App;
+export default MainPage;
