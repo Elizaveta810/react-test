@@ -1,4 +1,4 @@
-function SigninPage() {
+function SigninPage(login) {
   return (
     <body>
       <div className="wrapper">
@@ -23,8 +23,8 @@ function SigninPage() {
                   id="formpassword"
                   placeholder="Пароль"
                 ></input>
-                <button className="modal__btn-enter _hover01" id="btnEnter">
-                  <a href="../main.html">Войти</a>
+                <button onClick={login} className="modal__btn-enter _hover01" id="btnEnter">
+               Войти
                 </button>
                 <div className="modal__form-group">
                   <p>Нужно зарегистрироваться?</p>

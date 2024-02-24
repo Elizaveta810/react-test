@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import { appRoutes } from "./lib/appRoutes";
 import SigninPage from "./pages/SigninPage/SigninPage";
 import NotFound from "./pages/NotFoundPage/NotFoundPage";
@@ -12,15 +12,27 @@ import "./App.css";
 
 function App() {
   const [user, setUser] = useState(true);
+  const navigate = useNavigate();
+
+  function login() {
+    setUser(true);
+    navigate(appRoutes.MAIN)
+  }
+
+  function logout() {
+    setUser(false);
+    navigate(appRoutes.SIGNIN)
+  }
+
   return (
     <Routes>
       <Route element={<PrivateRoute user={user} />}>
         <Route path={appRoutes.MAIN} element={<MainPage />}>
-        <Route path={appRoutes.TASK} element={<TaskPage/>}/> 
-        <Route path={appRoutes.EXIT} element={<ExitPage/>}/> 
+          <Route path={appRoutes.TASK} element={<TaskPage />} />
+          <Route path={appRoutes.EXIT} element={<ExitPage logout={logout} />} />
         </Route>
       </Route>
-      <Route path={appRoutes.SIGNIN} element={<SigninPage />} />
+      <Route path={appRoutes.SIGNIN} element={<SigninPage login={login} />} />
       <Route path={appRoutes.SIGNUP} element={<SignupPage />} />
       <Route path={appRoutes.NOT_FOUND} element={<NotFound />} />
     </Routes>

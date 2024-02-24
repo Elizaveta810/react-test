@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { appRoutes } from "../../../lib/appRoutes";
 
-function PopExit() {
+function PopExit(logout) {
   return (
     <div className="pop-exit" id="popExit">
       <div className="pop-exit__container">
@@ -12,7 +12,7 @@ function PopExit() {
           <form className="pop-exit__form" id="formExit" action="#">
             <div className="pop-exit__form-group">
               <Link to={appRoutes.SIGNIN}>
-              <span className="pop-exit__exit-yes _hover01" id="exitYes">
+              <span onClick={logout} className="pop-exit__exit-yes _hover01" id="exitYes">
                 Да, выйти
               </span>
               </Link>
