@@ -1,14 +1,11 @@
 import { useEffect, useState } from "react";
 import { cardList } from "../../date";
-import PopExit from "../../components/popups/PopExit/PopExit";
-import PopBrowse from "../../components/popups/PopBrowse/PopBrowse";
-import PopNewCard from "../../components/popups/PopNewCard/PopNewCard";
 import Header from "../../components/Header/Header";
-import MainContent from "../../components/MainContent/MainContent";
 import Column from "../../components/Column/Column";
-import reactLogo from "./assets/react.svg";
+import reactLogo from "../../assets/react.svg"
 import viteLogo from "/vite.svg";
-
+import MainContent from "../../components/MainContent/MainContent"
+import { Outlet } from "react-router-dom";
 
 
 
@@ -48,9 +45,7 @@ function MainPage() {
   return (
     <>
       <div className="wrapper">
-        <PopExit />
-        <PopBrowse />
-        <PopNewCard />
+       <Outlet/>
 
         <Header addCard={addCard} />
         {isLoading ? (
