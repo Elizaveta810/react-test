@@ -1,4 +1,4 @@
-function SigninPage(login) {
+function SigninPage({login}) {
   return (
     <body>
       <div className="wrapper">
