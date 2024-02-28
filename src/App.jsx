@@ -11,16 +11,16 @@ import ExitPage from "./pages/ExitPage/ExitPage";
 import "./App.css";
 
 function App() {
-  const [user, setUser] = useState(true);
+  const [user, setUser] = useState(null);
   const navigate = useNavigate();
 
-  function login() {
-    setUser(true);
+  function login(newUser) {
+    setUser(newUser);
     navigate(appRoutes.MAIN)
   }
 
   function logout() {
-    setUser(false);
+    setUser(null);
     navigate(appRoutes.SIGNIN)
   }
 
