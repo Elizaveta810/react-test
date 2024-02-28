@@ -8,7 +8,6 @@ import MainContent from "../../components/MainContent/MainContent";
 import { Outlet } from "react-router-dom";
 import { getTodos } from "../../api";
 
-
 const statusList = [
   "Без статуса",
   "Нужно сделать",
@@ -17,17 +16,22 @@ const statusList = [
   "Готово",
 ];
 
-function MainPage({user}) {
+function MainPage({ user }) {
   // const [count, setCount] = useState(0);
   const [cards, setCards] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    getTodos({token:user.token}).then((todos) => {  //запрашивает данные из API
-      console.log(todos);
-      setCards(todos.tasks);
-      setIsLoading(false);
-    });
+    getTodos({ token: user.token })
+      .then((todos) => {
+        //запрашивает данные из API
+        console.log(todos);
+        setCards(todos.tasks);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        alert(error);
+      });
   }, [user]);
 
   function addCard() {
