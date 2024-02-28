@@ -1,14 +1,12 @@
 import { useEffect, useState } from "react";
-import { cardList } from "../../date";
+
 import Header from "../../components/Header/Header";
 import Column from "../../components/Column/Column";
-import reactLogo from "../../assets/react.svg"
+import reactLogo from "../../assets/react.svg";
 import viteLogo from "/vite.svg";
-import MainContent from "../../components/MainContent/MainContent"
+import MainContent from "../../components/MainContent/MainContent";
 import { Outlet } from "react-router-dom";
-
-
-
+import { getTodos } from "../../api";
 
 
 const statusList = [
@@ -19,16 +17,18 @@ const statusList = [
   "Готово",
 ];
 
-function MainPage() {
-  const [count, setCount] = useState(0);
-  const [cards, setCards] = useState(cardList);
+function MainPage({user}) {
+  // const [count, setCount] = useState(0);
+  const [cards, setCards] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    setTimeout(() => {
+    getTodos({token:user.token}).then((todos) => {  //запрашивает данные из API
+      console.log(todos);
+      setCards(todos.tasks);
       setIsLoading(false);
-    }, 2000); // 2 секунды задержки
-  }, []); // Пустой массив зависимостей для запуска только при монтировании компонента
+    });
+  }, [user]);
 
   function addCard() {
     // Логика добавления карточки
@@ -45,7 +45,7 @@ function MainPage() {
   return (
     <>
       <div className="wrapper">
-       <Outlet/>
+        <Outlet />
 
         <Header addCard={addCard} />
         {isLoading ? (

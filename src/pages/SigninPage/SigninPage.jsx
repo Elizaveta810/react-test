@@ -23,7 +23,7 @@ function SigninPage({ login }) {
   };
 
   return (
-    <body>
+    
       <div className="wrapper">
         <div className="container-signin">
           <div className="modal">
@@ -67,7 +67,7 @@ function SigninPage({ login }) {
           </div>
         </div>
       </div>
-    </body>
+  
   );
 }
 
