@@ -1,6 +1,15 @@
 const baseHost = "https://wedev-api.sky.pro/api/kanban";
 const userHost = "https://wedev-api.sky.pro/api/user";
 
+
+//РЕГИСТРАЦИЯ
+export function 
+
+
+
+
+
+
 //Получить список задач
 export async function getTodos({ token }) {
   const response = await fetch(baseHost, {
@@ -17,23 +26,19 @@ export async function getTodos({ token }) {
   return data;
 }
 
-
-
-
-
-
-
 //АВТОРИЗАЦИЯ
-function signIn({ login, password }) {
-  return fetch(userHost + "/login", {
+export default  function signIn({ login, password }) {
+   return fetch(userHost + "/login", {
     method: "POST",
     body: JSON.stringify({ login, password }),
   }).then((response) => {
     if (response.status === 400) {
       throw new Error("Неверный логин или пароль");
     }
-    return response.json;
+    return response.json();
   });
+ 
+  
 }
 
-export default signIn;
+

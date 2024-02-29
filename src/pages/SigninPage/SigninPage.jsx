@@ -1,21 +1,25 @@
 import { useState } from "react";
-import signIn from "../../api";
+import signIn from "../../api"
+
 
 function SigninPage({ login }) {
-  const [loginData, setLoginData] = useState({ login: "", password: "" });
+//состояние, которое ругулирует все данные полей ввода в нашем приложении.
+  const [loginData, setLoginData] = useState({ login: "", password: "" });  
 
-  //Функция, которая будет срабытывать, когда пользователь будет вводить или стирать, какие то данные в поле ввода.
+//Функция, которая будет срабытывать, когда пользователь будет вводить или стирать, какие то данные в поле ввода.
   const handleInputChange = (e) => {
-    const { name, value } = e.target; // Извлекаем имя поля и его значение
+    const { name, value } = e.target; // Извлекаем имя поля и его значение (value)- это value где хранится значение нашего поля ввода.
 
+  //Функция для установки состояния
     setLoginData({
       ...loginData, // Копируем текущие данные из состояния
       [name]: value, // Обновляем нужное поле
     });
   };
 
-  //Функция отправки обработки логина
+//Функция отправки обработки логина
   const handleLogin = async (e) => {
+    //console.log (loginData)
     e.preventDefault();
     await signIn(loginData).then((data) => {
       login(data.user);
