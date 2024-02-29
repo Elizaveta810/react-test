@@ -2,13 +2,6 @@ const baseHost = "https://wedev-api.sky.pro/api/kanban";
 const userHost = "https://wedev-api.sky.pro/api/user";
 
 
-//РЕГИСТРАЦИЯ
-export function 
-
-
-
-
-
 
 //Получить список задач
 export async function getTodos({ token }) {
@@ -25,6 +18,25 @@ export async function getTodos({ token }) {
   const data = await response.json();
   return data;
 }
+
+
+
+//РЕГИСТРАЦИЯ
+export function signUp({ login, name, password }) {
+  return fetch(userHost, {
+   method: "POST",
+   body: JSON.stringify({ login, name, password }),
+ }).then((response) => {
+   if (response.status === 400) {
+     throw new Error("Такой пользователь уже существует");
+   }
+   return response.json();
+ });
+
+ 
+}
+
+
 
 //АВТОРИЗАЦИЯ
 export default  function signIn({ login, password }) {

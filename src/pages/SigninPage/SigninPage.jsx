@@ -61,10 +61,10 @@ function SigninPage({ login }) {
                   id="btnEnter"
                 >
                   Войти
-                </button>
-                <div className="modal__form-group">
+                </button >
+                <div className="modal__form-group" >
                   <p>Нужно зарегистрироваться?</p>
-                  <a href="signup.html">Регистрируйтесь здесь</a>
+                  <a href="signup" >Регистрируйтесь здесь</a>
                 </div>
               </form>
             </div>
