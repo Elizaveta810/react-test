@@ -46,8 +46,8 @@ function SignupPage() {
                   value={signupData.name}
                   className="modal__input first-name"
                   type="text"
-                  name="first-name"
-                  id="first-name"
+                  name="name"
+                  id="name"
                   placeholder="Имя"
                 ></input>
                 <input
