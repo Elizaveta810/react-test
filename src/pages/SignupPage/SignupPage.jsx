@@ -21,18 +21,15 @@ function SignupPage() {
 
   const handleSignup = async (e) => {
     e.preventDefault();
-    console.log(signupData);
-    await signUp(signupData)
-      .then((data) => {
-        console.log(data);
-        login(data.newUser);
-        navigate(appRoutes.MAIN);
-      })
-      
+ 
+    await signUp(signupData).then((data) => {
+      login(data.user);
+      navigate(appRoutes.MAIN);
+    });
   };
 
   return (
-    <body>
+   
       <div className="wrapper">
         <div className="container-signup">
           <div className="modal">
@@ -85,7 +82,7 @@ function SignupPage() {
           </div>
         </div>
       </div>
-    </body>
+  
   );
 }
 
