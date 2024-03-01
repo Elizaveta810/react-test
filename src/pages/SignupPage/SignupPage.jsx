@@ -5,12 +5,12 @@ import { useUser } from "../../hooks/useUser";
 import { appRoutes } from "../../lib/appRoutes";
 
 function SignupPage() {
-  const {login} = useUser();
+  const { login } = useUser();
   const navigate = useNavigate();
 
   const [signupData, setSignupData] = useState({
-    login: "",
     name: "",
+    login: "",
     password: "",
   });
 
@@ -25,12 +25,10 @@ function SignupPage() {
     await signUp(signupData)
       .then((data) => {
         console.log(data);
-        login(data.user);
+        login(data.newUser);
         navigate(appRoutes.MAIN);
       })
-      .catch((error) => {
-        alert(error);
-      });
+      
   };
 
   return (
@@ -71,11 +69,10 @@ function SignupPage() {
                   placeholder="Пароль"
                 ></input>
                 <button
-                 onClick={handleSignup}
+                  onClick={handleSignup}
                   className="modal__btn-signup-ent _hover01"
                   id="SignUpEnter"
                 >
-                 
                   Зарегистрироваться
                 </button>
                 <div className="modal__form-group">
