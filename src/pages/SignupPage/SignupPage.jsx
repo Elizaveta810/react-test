@@ -1,12 +1,7 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { signUp } from "../../api";
-import { useUser } from "../../hooks/useUser";
-import { appRoutes } from "../../lib/appRoutes";
 
-function SignupPage() {
-  const { login } = useUser();
-  const navigate = useNavigate();
+export default function SignupPage({login}) {
 
   const [signupData, setSignupData] = useState({
     name: "",
@@ -24,7 +19,6 @@ function SignupPage() {
  
     await signUp(signupData).then((data) => {
       login(data.user);
-      navigate(appRoutes.MAIN);
     });
   };
 
@@ -85,5 +79,3 @@ function SignupPage() {
   
   );
 }
-
-export default SignupPage;

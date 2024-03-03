@@ -10,7 +10,7 @@ import TaskPage from "./pages/TaskPage/TaskPage";
 import ExitPage from "./pages/ExitPage/ExitPage";
 import "./App.css";
 
-function App() {
+export default function App() {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
 
@@ -33,10 +33,8 @@ function App() {
         </Route>
       </Route>
       <Route path={appRoutes.SIGNIN} element={<SigninPage login={login} />} />
-      <Route path={appRoutes.SIGNUP} element={<SignupPage />} />
+      <Route path={appRoutes.SIGNUP} element={<SignupPage login={login} />}  />
       <Route path={appRoutes.NOT_FOUND} element={<NotFound />} />
     </Routes>
   );
 }
-
-export default App;
