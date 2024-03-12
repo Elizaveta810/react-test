@@ -5,6 +5,7 @@ import Column from "../../components/Column/Column";
 import MainContent from "../../components/MainContent/MainContent";
 import { Outlet } from "react-router-dom";
 import { getTodos } from "../../api";
+import { useUser } from "../../hooks/useUser";
 
 const statusList = [
   "Без статуса",
@@ -14,10 +15,10 @@ const statusList = [
   "Готово",
 ];
 
-function MainPage({ user }) {
-  // const [count, setCount] = useState(0);
+function MainPage() {
   const [cards, setCards] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const { user } = useUser();
 
   useEffect(() => {
     getTodos({ token: user.token })
@@ -64,8 +65,6 @@ function MainPage({ user }) {
           </MainContent>
         )}
       </div>
-
-      
     </>
   );
 }
