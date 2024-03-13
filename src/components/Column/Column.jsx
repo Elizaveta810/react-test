@@ -12,8 +12,8 @@ function Column({ title, cardList }) {
             topic={task.topik}
             title={task.title}
             data={task.data}
-            key={task._id}
-            id={task._id}
+            key={task.id}
+            id={task.id}
           />
         ))}
       </div>
