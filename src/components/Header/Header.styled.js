@@ -1,4 +1,5 @@
 import { styled } from "styled-components";
+import { hover01, hover02 } from "../../styled/common/Common.styled";
 
 export const StyledHeader = styled.header`
   margin: 0 auto;
@@ -15,4 +16,45 @@ export const HeaderBlock = styled.div`
   top: 0;
   left: 0;
   padding: 0 10px;
+`;
+
+export const HeaderLogo = styled.div`
+  width: 85px;
+`;
+
+export const Img = styled.img`
+  width: 85px;
+`;
+export const HeaderNav = styled.nav`
+  max-width: 290px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+export const HeaderBtnMainNew = styled.button`
+  width: 178px;
+  height: 30px;
+  border-radius: 4px;
+  background-color: #565eef;
+  color: #ffffff;
+  border: none;
+  font-size: 14px;
+  line-height: 1;
+  font-weight: 500;
+  margin-right: 20px;
+
+  ${hover01}
+`;
+export const HeaderUser = styled.div`
+  height: 20px;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  line-height: 20px;
+  color: #565EEF;
+
+  ${hover02}
 `;
