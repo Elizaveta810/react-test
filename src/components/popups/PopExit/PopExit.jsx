@@ -1,37 +1,39 @@
 import { Link, useNavigate } from "react-router-dom";
 import { appRoutes } from "../../../lib/appRoutes";
 import { useUser } from "../../../hooks/useUser";
+import * as S from "./PopExit.styled";
 
 function PopExit() {
   const { logout } = useUser();
   const navigate = useNavigate();
   return (
-    <div className="pop-exit" id="popExit">
-      <div className="pop-exit__container">
-        <div className="pop-exit__block">
-          <div className="pop-exit__ttl">
+    <S.PopExit id="popExit">
+      <S.PopExitContainer>
+        <S.PopExitBlock>
+          <S.PopExitTtl>
             <h2>Выйти из аккаунта?</h2>
-          </div>
+          </S.PopExitTtl>
           <form className="pop-exit__form" id="formExit" action="#">
-            <div className="pop-exit__form-group">
+            <S.PopExitFormGroup>
               <Link to={appRoutes.SIGNIN}>
-              <span onClick={() => {
-                logout()
-                navigate(appRoutes.SIGNIN)
-              }} className="pop-exit__exit-yes _hover01" id="exitYes">
-                Да, выйти
-              </span>
+                <S.PopExitYes
+                  onClick={() => {
+                    logout();
+                    navigate(appRoutes.SIGNIN);
+                  }}
+                  id="exitYes"
+                >
+                  Да, выйти
+                </S.PopExitYes>
               </Link>
               <Link to={appRoutes.MAIN}>
-              <span className="pop-exit__exit-no _hover03" id="exitNo">
-                Нет, остаться
-              </span>
+                <S.PopExitNo id="exitNo">Нет, остаться</S.PopExitNo>
               </Link>
-            </div>
+            </S.PopExitFormGroup>
           </form>
-        </div>
-      </div>
-    </div>
+        </S.PopExitBlock>
+      </S.PopExitContainer>
+    </S.PopExit>
   );
 }
 
