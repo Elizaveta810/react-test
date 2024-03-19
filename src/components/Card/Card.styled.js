@@ -91,3 +91,15 @@ export const CardDate = styled.div`
     letter-spacing: 0.2px;
   }
 `;
+export const G = styled.g`
+  
+`;
+export const Path = styled.path`
+  
+`;
+export const Svg = styled.svg`
+  width: 13px;
+`;
+export const Defs = styled.defs`
+  
+`;
