@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { topicHeader } from "../../lib/topic";
 import * as S from "./Card.styled";
 
-function Card({ topic, title, id }) {
+function Card({ date, topic, title, _id }) {
   return (
     <div className="cards__item">
       <div className="cards__card card">
@@ -19,7 +19,7 @@ function Card({ topic, title, id }) {
           </a>
         </div>
         <div className="card__content">
-          <Link to={`task/${id}`}>
+          <Link to={`task/${_id}`}>
             <h3 className="card__title">{title}</h3>
           </Link>
           <div className="card__date">
@@ -51,7 +51,7 @@ function Card({ topic, title, id }) {
                 </clipPath>
               </defs>
             </svg>
-            <p>30.10.23</p>
+            <p>{date}</p>
           </div>
         </div>
       </div>
