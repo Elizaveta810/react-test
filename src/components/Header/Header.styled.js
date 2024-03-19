@@ -57,4 +57,5 @@ export const HeaderUser = styled.div`
   color: #565EEF;
 
   ${hover02}
+  
 `;

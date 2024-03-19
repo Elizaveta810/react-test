@@ -1,14 +1,16 @@
 import { Link } from "react-router-dom";
 import { appRoutes } from "../../../lib/appRoutes";
 import * as S from "./PopUser.styled";
+import {useUser} from "../../../hooks/useUser"
 
 
 function PopUser() {
+  const {user} = useUser()
   return (
     <S.HeaderPopUserSet>
       {/* <a href="">x</a> */}
-      <S.PopUserSetName>Ivan Ivanov</S.PopUserSetName>
-      <S.PopUserSetMail>ivan.ivanov@gmail.com</S.PopUserSetMail>
+      <S.PopUserSetName>{user.name}</S.PopUserSetName>
+      <S.PopUserSetMail>{user.login}</S.PopUserSetMail>
       <S.PopUserSetTheme>
         <S.PopUserSetThemeP>Темная тема</S.PopUserSetThemeP>
         <S.PopUserSetThemeInput type="checkbox" name="checkbox" />

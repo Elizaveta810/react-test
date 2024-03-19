@@ -7,9 +7,12 @@ import PopUser from "../popups/PopUser/PopUser";
 import * as S from "./Header.styled";
 import { Container } from "../../styled/common/Common.styled";
 import { Link } from "react-router-dom";
+import {useUser} from "../../hooks/useUser"
 
 function Header() {
+
   const [isOpened, setIsOpened] = useState(false);
+  const {user} = useUser()
   function togglePopup() {
     setIsOpened((prev) => !prev);
   }
@@ -29,7 +32,7 @@ function Header() {
             <Link to={"/create"}>
               <S.HeaderBtnMainNew>Создать новую задачу</S.HeaderBtnMainNew>
             </Link>
-            <S.HeaderUser onClick={togglePopup}>Ivan Ivanov</S.HeaderUser>
+            <S.HeaderUser onClick={togglePopup}>{user.name}</S.HeaderUser>
             {isOpened && <PopUser />}
           </S.HeaderNav>
         </S.HeaderBlock>
