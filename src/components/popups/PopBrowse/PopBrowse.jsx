@@ -53,7 +53,7 @@ function PopBrowse() {
                     id="textArea01"
                     readOnly=""
                     placeholder="Введите описание задачи..."
-                    defaultValue={""}
+                    // defaultValue={""}
                   />
                 </div>
               </form>

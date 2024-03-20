@@ -57,7 +57,7 @@ import { Link } from "react-router-dom";
                   value={newTask.description}
                   onChange={handleInputChange}
                   placeholder="Введите описание задачи..."
-                  defaultValue={""}
+                  // defaultValue={""}
                 />
               </S.FormNewBlockDiv>
             </S.PopNewCardForm>

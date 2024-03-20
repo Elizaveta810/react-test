@@ -6,6 +6,7 @@ import MainContent from "../../components/MainContent/MainContent";
 import { Outlet } from "react-router-dom";
 import { getTodos } from "../../api";
 import { useUser } from "../../hooks/useUser";
+import { Wrapper } from "../../styled/common/Common.styled";
 
 const statusList = [
   "Без статуса",
@@ -47,7 +48,7 @@ function MainPage() {
 
   return (
     <>
-      <div className="wrapper">
+      <Wrapper>
         <Outlet />
 
         <Header addCard={addCard} />
@@ -64,7 +65,7 @@ function MainPage() {
             ))}
           </MainContent>
         )}
-      </div>
+      </Wrapper>
     </>
   );
 }
