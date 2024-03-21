@@ -74,9 +74,9 @@ export default function SignupPage() {
                 <S.ModalFormGroup>
                   <S.ModalFormGroupP>
                     Уже есть аккаунт?
-                    <S.ModalFormGroupA href="signin.html">
+                    <S.Span>
                       Войдите здесь
-                    </S.ModalFormGroupA>
+                    </S.Span>
                   </S.ModalFormGroupP>
                 </S.ModalFormGroup>
               </Link>

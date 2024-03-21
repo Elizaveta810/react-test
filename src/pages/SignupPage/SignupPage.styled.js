@@ -123,7 +123,7 @@ export const ModalFormGroupP = styled.p`
   line-height: 150%;
   letter-spacing: -0.14px;
 `;
-export const ModalFormGroupA = styled.a`
+export const Span = styled.span`
   color: rgba(148, 166, 190, 0.4);
   font-size: 14px;
   font-weight: 400;
