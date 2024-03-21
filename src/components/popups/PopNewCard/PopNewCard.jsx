@@ -1,9 +1,18 @@
 import { useState } from "react";
 import Calendar from "../../Calendar/Calendar";
 import * as S from "./PopNewCard.styled";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { postTodo } from "../../../api";
+import { useTask, useUser } from "../../../hooks/useUser";
+import { appRoutes } from "../../../lib/appRoutes";
 
 function PopNewCard() {
+
+  const {user} = useUser()
+
+  const  {putDownTask}  = useTask();
+  const navigate = useNavigate();
+
   const [selectedDate, setSelectedDate] = useState(null); //состояние для того, что бы сохранять дату, которую мы выберем
   const [newTask, setNewTask] = useState({
     title: "",
@@ -11,12 +20,19 @@ function PopNewCard() {
     topic: "",
   });
 
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
+  const handleFormSubmit = async() => {
+   // e.preventDefault();
     const taskData = {
-      ...newTask, date:selectedDate
+      ...newTask, date: selectedDate
     }
     console.log(taskData);
+    // В ней же вызываем postTodo и передаём нужные данные
+    await postTodo({
+      // В task передаём объект с данными задачи
+      task: taskData,
+      // В token передаём токен, который получаем из пользователя
+      // Самого пользователя получаем из контекста
+      token: user.token,})
   };
 
   //Функция, которая будет срабытывать, когда пользователь будет вводить или стирать, какие то данные в поле ввода.
@@ -29,14 +45,25 @@ function PopNewCard() {
       [name]: value, // Обновляем нужное поле
     });
   };
-
+  const handleTask = async (taskData) => {
+    //  e.preventDefault();
+    await postTodo(taskData).then((data) => {
+      console.log(data);
+      putDownTask(data.task);
+      navigate(appRoutes.MAIN);
+    });
+  };
+  const creatTaskBtn = (taskData) => {
+    handleFormSubmit(taskData);
+    handleTask(taskData);
+  };
   return (
     <S.PopNewCardDiv>
       <S.PopNewCardConteinerDiv>
         <S.PopNewCardBlockDiv>
           <S.PopNewCardContentDiv>
             <S.PopNewCardTtl>Создание задачи</S.PopNewCardTtl>
-            <Link to={`/`}>
+            <Link to={appRoutes.MAIN}>
               <S.PopNewCardCloseDiv>✖</S.PopNewCardCloseDiv>
             </Link>
             <S.PopNewCardWrapDiv>
@@ -109,7 +136,7 @@ function PopNewCard() {
                 </S.RadioToolbarDiv>
               </S.CategoriesThemesDiv>
             </S.ChecBoxDiv>
-            <S.FormNewCreateBtn onClick={handleFormSubmit}>
+            <S.FormNewCreateBtn onClick={creatTaskBtn}>
               Создать задачу
             </S.FormNewCreateBtn>
           </S.PopNewCardContentDiv>

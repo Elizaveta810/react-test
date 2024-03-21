@@ -1,6 +1,10 @@
-const baseHost = "https://wedev-api.sky.pro/api/kanban";
-const userHost = "https://wedev-api.sky.pro/api/user";
 
+export let token;
+export const setToken = (newToken) => {
+    token = newToken;
+};
+const baseHost ="https://wedev-api.sky.pro/api/kanban";
+const userHost = "https://wedev-api.sky.pro/api/user";
 
 
 //Получить список задач
@@ -20,7 +24,23 @@ export async function getTodos({ token }) {
 }
 
 
+//Добавить задачу в список
 
+export async function postTodo({task, token}) {
+  const response = await fetch(baseHost, {
+      headers: {
+Authorization: `Bearer ${token}`,
+      },
+      method: "POST",
+
+      body: JSON.stringify(task),
+  });
+  if (!response.status === 201) {
+      throw new Error("Не удалось добавить задачу, попробуйте позже");
+  }
+  const data = await response.json();
+  return data;
+}
 
 
 //РЕГИСТРАЦИЯ
