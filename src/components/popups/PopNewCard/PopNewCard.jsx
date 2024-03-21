@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    console.log(newTask);
+    console.log(newTask)
   };
 
   //Функция, которая будет срабытывать, когда пользователь будет вводить или стирать, какие то данные в поле ввода.

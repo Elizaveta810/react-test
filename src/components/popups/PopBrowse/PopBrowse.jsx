@@ -36,7 +36,7 @@ function PopBrowse() {
                 </div> */}
               </S.StatusThemes>
             </S.PopBrowseStatus>
-           
+
             <S.PopBrowseWrap>
               <S.PopBrowseForm id="formBrowseCard" action="#">
                 <S.FormBrowseBlock>
@@ -62,17 +62,13 @@ function PopBrowse() {
             <S.PopBrowseBtnBrowse>
               <S.BtnGroup>
                 <S.BtnBrowseEditBtnBor>
-                  <a href="#">Редактировать задачу</a>
+                  Редактировать задачу
                 </S.BtnBrowseEditBtnBor>
-                <button className="btn-browse__delete _btn-bor _hover03">
-                  <a href="#">Удалить задачу</a>
-                </button>
+                <S.BtnBrowseEditBtnBor>Удалить задачу</S.BtnBrowseEditBtnBor>
               </S.BtnGroup>
 
               <Link to={appRoutes.MAIN}>
-                <span className="btn-browse__close _btn-bg _hover01">
-                  Закрыть
-                </span>
+                <S.BtnBrowseClose>Закрыть</S.BtnBrowseClose>
               </Link>
             </S.PopBrowseBtnBrowse>
             {/* <div className="pop-browse__btn-edit _hide">

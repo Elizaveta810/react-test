@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-import {hover03} from "../../../styled/common/Common.styled";
+import {hover01, hover03} from "../../../styled/common/Common.styled";
 
 export const PopBrowse = styled.div`
   width: 100%;
@@ -147,21 +147,32 @@ export const PopBrowseBtnBrowse = styled.div`
   flex-wrap: wrap;
   align-items: flex-start;
   justify-content: space-between;
-  /* margin-right: 8px; */
+   margin-top: 15px; 
 `;
 export const BtnGroup = styled.div`
 margin-right: 8px;
 `;
 export const BtnBrowseEditBtnBor = styled.button`
-  height: 30px;
-  margin-bottom: 10px;
-  padding: 0 14px;
   border-radius: 4px;
   border: 0.7px solid var(--palette-navy-60, #565eef);
   outline: none;
   background: transparent;
   color: #565eef;
-  cursor: pointer;
-  outline: none;
+  margin-bottom: 10px;
+  padding: 0 14px;
+  height: 30px;
+  margin-right: 8px;
   ${hover03}
+`;
+export const BtnBrowseClose = styled.button`
+  border-radius: 4px;
+  background: #565eef;
+  border: none;
+  outline: none;
+  color: #ffffff;
+  margin-bottom: 10px;
+  margin-right: 8px;
+  padding: 0 14px;
+  height: 30px;
+  ${hover01}
 `;
