@@ -7,10 +7,9 @@ import { useTask, useUser } from "../../../hooks/useUser";
 import { appRoutes } from "../../../lib/appRoutes";
 
 function PopNewCard() {
+  const { user } = useUser();
 
-  const {user} = useUser()
-
-  const  {putDownTask}  = useTask();
+  const { setTask } = useTask();
   const navigate = useNavigate();
 
   const [selectedDate, setSelectedDate] = useState(null); //состояние для того, что бы сохранять дату, которую мы выберем
@@ -20,43 +19,36 @@ function PopNewCard() {
     topic: "",
   });
 
-  const handleFormSubmit = async() => {
-   // e.preventDefault();
+ //функция срабатывает при нажатии добавить 
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
     const taskData = {
-      ...newTask, date: selectedDate
-    }
+      ...newTask,
+      date: selectedDate,
+    };
     console.log(taskData);
-    // В ней же вызываем postTodo и передаём нужные данные
-    await postTodo({
-      // В task передаём объект с данными задачи
-      task: taskData,
-      // В token передаём токен, который получаем из пользователя
-      // Самого пользователя получаем из контекста
-      token: user.token,})
+
+    postTodo({
+      taskData,
+      token: user.token,
+    }).then((data) => {
+      
+      setTask(data.tasks);
+    
+      navigate(appRoutes.MAIN);
+    });
   };
 
   //Функция, которая будет срабытывать, когда пользователь будет вводить или стирать, какие то данные в поле ввода.
   const handleInputChange = (e) => {
     const { name, value } = e.target; // Извлекаем имя поля и его значение (value)- это value где хранится значение нашего поля ввода.
 
-    //Функция для установки состояния
     setNewTask({
-      ...newTask, // Копируем текущие данные из состояния
-      [name]: value, // Обновляем нужное поле
+      ...newTask,
+      [name]: value,
     });
   };
-  const handleTask = async (taskData) => {
-    //  e.preventDefault();
-    await postTodo(taskData).then((data) => {
-      console.log(data);
-      putDownTask(data.task);
-      navigate(appRoutes.MAIN);
-    });
-  };
-  const creatTaskBtn = (taskData) => {
-    handleFormSubmit(taskData);
-    handleTask(taskData);
-  };
+
   return (
     <S.PopNewCardDiv>
       <S.PopNewCardConteinerDiv>
@@ -93,8 +85,8 @@ function PopNewCard() {
                 </S.FormNewBlockDiv>
               </S.PopNewCardForm>
               <Calendar
-              selectedDate={selectedDate}
-              setSelectedDate={setSelectedDate}
+                selectedDate={selectedDate}
+                setSelectedDate={setSelectedDate}
               />
             </S.PopNewCardWrapDiv>
             <S.ChecBoxDiv>
@@ -136,7 +128,7 @@ function PopNewCard() {
                 </S.RadioToolbarDiv>
               </S.CategoriesThemesDiv>
             </S.ChecBoxDiv>
-            <S.FormNewCreateBtn onClick={creatTaskBtn}>
+            <S.FormNewCreateBtn onClick={handleFormSubmit}>
               Создать задачу
             </S.FormNewCreateBtn>
           </S.PopNewCardContentDiv>

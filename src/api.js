@@ -26,14 +26,20 @@ export async function getTodos({ token }) {
 
 //Добавить задачу в список
 
-export async function postTodo({task, token}) {
+export async function postTodo({taskData, token}) {
   const response = await fetch(baseHost, {
       headers: {
 Authorization: `Bearer ${token}`,
       },
       method: "POST",
 
-      body: JSON.stringify(task),
+      body: JSON.stringify({
+        "title": taskData.title,
+        "topic": taskData.topic,
+        "status": "Без статуса",
+        "description": taskData.description,
+        "date": taskData.date,
+    }),
   });
   if (!response.status === 201) {
       throw new Error("Не удалось добавить задачу, попробуйте позже");
