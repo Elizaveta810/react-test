@@ -28,12 +28,11 @@ export async function getTodos({ token }) {
 
 export async function postTodo({taskData, token}) {
   const response = await fetch(baseHost, {
-      headers: {
+    method: "POST",
+    headers: {
 Authorization: `Bearer ${token}`,
       },
-      method: "POST",
-
-      body: JSON.stringify({
+        body: JSON.stringify({
         "title": taskData.title,
         "topic": taskData.topic,
         "status": "Без статуса",
@@ -41,8 +40,8 @@ Authorization: `Bearer ${token}`,
         "date": taskData.date,
     }),
   });
-  if (!response.status === 201) {
-      throw new Error("Не удалось добавить задачу, попробуйте позже");
+  if (!response.status === 400) {
+      throw new Error("Заполнены не все поля");
   }
   const data = await response.json();
   return data;

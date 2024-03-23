@@ -19,7 +19,7 @@ function PopNewCard() {
     topic: "",
   });
 
- //функция срабатывает при нажатии добавить 
+  //функция срабатывает при нажатии добавить
   const handleFormSubmit = (e) => {
     e.preventDefault();
     const taskData = {
@@ -28,15 +28,15 @@ function PopNewCard() {
     };
     console.log(taskData);
 
-    postTodo({
-      taskData,
-      token: user.token,
-    }).then((data) => {
-      
-      setTask(data.tasks);
-    
-      navigate(appRoutes.MAIN);
-    });
+    postTodo({ taskData, token: user.token })
+      .then((data) => {
+        setTask(data.tasks);
+        navigate(appRoutes.MAIN);
+      })
+      .catch((error) => {
+        console.log(error);
+        alert(error);
+      });
   };
 
   //Функция, которая будет срабытывать, когда пользователь будет вводить или стирать, какие то данные в поле ввода.
