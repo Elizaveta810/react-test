@@ -1,5 +1,6 @@
 import Card from "../Card/Card";
 import * as S from "./Column.styled";
+import { format } from "date-fns";
 
 function Column({ title, cardList }) {
   return (
@@ -12,7 +13,7 @@ function Column({ title, cardList }) {
           <Card
             topic={task.topic}
             title={task.title}
-            date={task.date}
+            date={format(task.date, "dd.MM.yy")}
             key={task._id}
             id={task._id}
           />
