@@ -37,7 +37,7 @@ export async function postTodo({ taskData, token }) {
       date: taskData.date,
     }),
   });
-  if (!response.status === 400) {
+  if (response.status === 400) {
     throw new Error("Заполнены не все поля");
   }
   const data = await response.json();
