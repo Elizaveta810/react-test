@@ -29,13 +29,7 @@ export async function postTodo({ taskData, token }) {
     headers: {
       Authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify({
-      title: taskData.title,
-      topic: taskData.topic,
-      status: "Без статуса",
-      description: taskData.description,
-      date: taskData.date,
-    }),
+    body: JSON.stringify(taskData),
   });
   if (response.status === 400) {
     throw new Error("Заполнены не все поля");
@@ -46,25 +40,14 @@ export async function postTodo({ taskData, token }) {
 
 // Изменение задачи
 export async function changeTodo({
-  title,
-  topic,
-  status,
-  description,
-  date,
-  _id,
+ taskData, token
 }) {
-  const response = await fetch(baseHost + "/" + _id, {
+  const response = await fetch(baseHost + "/" + taskData._id, {
     method: "PUT",
     headers: {
       Authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify({
-      title,
-      topic,
-      status,
-      description,
-      date,
-    }),
+    body: JSON.stringify(taskData),
   });
 
   if (response.status === 201) {

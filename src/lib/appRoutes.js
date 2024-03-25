@@ -1,10 +1,10 @@
 export const appRoutes = {
   MAIN: "/",
-  TASK: "/task/:_id",
+  TASK: "/task/:id",
   SIGNIN: "/signin",
   SIGNUP: "/signup",
   EXIT: "/exit",
   NOT_FOUND: "*",
   CREATE:"/create",
-  POP_BROWSE:"/browse/:_id"
+  EDIT:"/task/:id/edit"
 };

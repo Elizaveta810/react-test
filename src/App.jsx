@@ -10,6 +10,7 @@ import TaskPage from "./pages/TaskPage/TaskPage";
 import ExitPage from "./pages/ExitPage/ExitPage";
 import "./App.css";
 import CreateTaskPage from "./pages/CreateTaskPage/CreateTaskPage";
+import EditCard from "./pages/EditCard/EditCard";
 
 export default function App() {
   
@@ -21,6 +22,7 @@ export default function App() {
           <Route path={appRoutes.TASK} element={<TaskPage />} />
           <Route path={appRoutes.EXIT} element={<ExitPage />} />
           <Route path={appRoutes.CREATE} element={<CreateTaskPage/>}/>
+          <Route path={appRoutes.EDIT} element={<EditCard/>}/>
         </Route>
       </Route>
       <Route path={appRoutes.SIGNIN} element={<SigninPage />} />
