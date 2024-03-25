@@ -45,7 +45,7 @@ export async function postTodo({ taskData, token }) {
 }
 
 // Изменение задачи
-export async function changeTask({
+export async function changeTodo({
   title,
   topic,
   status,
@@ -75,7 +75,19 @@ export async function changeTask({
   }
 }
 
-
+//Удаление задачи
+export async function DeleteTodo({ _id }) {
+  const response = await fetch(baseHost + "/" + _id, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  if (!response.ok) {
+    throw new Error("Ошибка удаления задачи");
+  }
+  return await response.json();
+}
 
 
 
