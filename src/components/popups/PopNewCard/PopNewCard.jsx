@@ -11,6 +11,7 @@ function PopNewCard() {
 
   const { setTask } = useTask();
   const navigate = useNavigate();
+  const [error, setError] = useState(null)
 
   const [selectedDate, setSelectedDate] = useState(null); //состояние для того, что бы сохранять дату, которую мы выберем
   const [newTask, setNewTask] = useState({
@@ -26,16 +27,18 @@ function PopNewCard() {
       ...newTask,
       date: selectedDate,
     };
-    console.log(taskData);
+    
 
     postTodo({ taskData, token: user.token })
       .then((data) => {
+        console.log(data)
         setTask(data.tasks);
         navigate(appRoutes.MAIN);
       })
       .catch((error) => {
         console.log(error);
-        alert(error);
+        // alert(error);
+        setError(error.message)
       });
   };
 
@@ -75,6 +78,7 @@ function PopNewCard() {
                 <S.FormNewBlockDiv>
                   <S.SubTtlLabel>Описание задачи</S.SubTtlLabel>
                   <S.FormNewArea
+                   $isError={error}
                     name="description"
                     id="textArea"
                     value={newTask.description}
@@ -127,6 +131,7 @@ function PopNewCard() {
                   </S.CategoriesThemePurpleLabel>
                 </S.RadioToolbarDiv>
               </S.CategoriesThemesDiv>
+              {error}
             </S.ChecBoxDiv>
             <S.FormNewCreateBtn onClick={handleFormSubmit}>
               Создать задачу
