@@ -5,6 +5,8 @@ import Column from "../../components/Column/Column";
 import MainContent from "../../components/MainContent/MainContent";
 import { Outlet } from "react-router-dom";
 import { getTodos } from "../../api";
+import { useTask, useUser } from "../../hooks/useUser";
+import { Wrapper } from "../../styled/common/Common.styled";
 
 const statusList = [
   "Без статуса",
@@ -14,42 +16,32 @@ const statusList = [
   "Готово",
 ];
 
-function MainPage({ user }) {
-  // const [count, setCount] = useState(0);
-  const [cards, setCards] = useState([]);
+function MainPage() {
   const [isLoading, setIsLoading] = useState(true);
+  const { user } = useUser();
+  const { task, setTask } = useTask();
 
   useEffect(() => {
     getTodos({ token: user.token })
       .then((todos) => {
         //запрашивает данные из API
         console.log(todos);
-        setCards(todos.tasks);
+        setTask(todos.tasks);
         setIsLoading(false);
       })
       .catch((error) => {
         alert(error);
       });
-  }, [user]);
+  }, [user, setTask]);
 
-  function addCard() {
-    // Логика добавления карточки
-    const newCard = {
-      id: cards.length + 1,
-      theme: "Web Design",
-      title: "Название задачи",
-      date: "30.10.23",
-      status: "Без статуса",
-    };
-    setCards([...cards, newCard]);
-  }
+  
 
   return (
     <>
-      <div className="wrapper">
+      <Wrapper>
         <Outlet />
 
-        <Header addCard={addCard} />
+        <Header/>
         {isLoading ? (
           "Пожалуйста подождите, идет загрузка..."
         ) : (
@@ -58,14 +50,12 @@ function MainPage({ user }) {
               <Column
                 title={status}
                 key={status}
-                cardList={cards.filter((card) => card.status === status)}
+                cardList={task.filter((card) => card.status === status)}
               />
             ))}
           </MainContent>
         )}
-      </div>
-
-      
+      </Wrapper>
     </>
   );
 }
