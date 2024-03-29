@@ -103,6 +103,7 @@ export const FormNewInput = styled.input`
     color: #94a6be;
     letter-spacing: -0.14px;
   }
+  border-color: ${({$isError}) => $isError ?  "green" : "rgba(148, 166, 190, 0.4)" }
 `;
 
 export const FormNewArea = styled.textarea`

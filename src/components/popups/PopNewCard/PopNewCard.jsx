@@ -19,10 +19,21 @@ function PopNewCard() {
     description: "",
     topic: "",
   });
+// Функция на проверку пустых полей ввода
+  function isEmptyFields(arrFields) {
+    return arrFields.some(el => el === '')
+  }
 
   //функция срабатывает при нажатии добавить
   const handleFormSubmit = (e) => {
     e.preventDefault();
+
+const {title, topic, description} = newTask
+if(isEmptyFields([title.trim(), topic.trim(), description.trim(), selectedDate])){
+  setError('Заполни все поля')
+  return
+}
+
     const taskData = {
       ...newTask,
       date: selectedDate,
@@ -61,11 +72,13 @@ function PopNewCard() {
             <Link to={appRoutes.MAIN}>
               <S.PopNewCardCloseDiv>✖</S.PopNewCardCloseDiv>
             </Link>
+            {error}
             <S.PopNewCardWrapDiv>
               <S.PopNewCardForm>
                 <S.FormNewBlockDiv>
                   <S.SubTtlLabel>Название задачи</S.SubTtlLabel>
                   <S.FormNewInput
+                  $isError={error}
                     type="text"
                     name="title"
                     value={newTask.title}
@@ -96,7 +109,7 @@ function PopNewCard() {
             <S.ChecBoxDiv>
               <S.CategoriesP>Категория</S.CategoriesP>
               <S.CategoriesThemesDiv>
-                <S.RadioToolbarDiv>
+                <S.RadioToolbarDiv >
                   <S.CategoriesThemeOrangeInput
                     type="radio"
                     id="radio1"
@@ -131,7 +144,7 @@ function PopNewCard() {
                   </S.CategoriesThemePurpleLabel>
                 </S.RadioToolbarDiv>
               </S.CategoriesThemesDiv>
-              {error}
+              {/* {error} */}
             </S.ChecBoxDiv>
             <S.FormNewCreateBtn onClick={handleFormSubmit}>
               Создать задачу

@@ -34,6 +34,9 @@ export async function postTodo({ taskData, token }) {
   if (response.status === 400) {
     throw new Error("Заполнены не все поля");
   }
+  if (response.status === 500) {
+    throw new Error("Сервер упал");
+  }
   const data = await response.json();
   return data;
 }
@@ -66,7 +69,7 @@ export async function DeleteTodo({ _id }) {
       Authorization: `Bearer ${token}`,
     },
   });
-  if (!response.ok) {
+  if (response.ok) {
     throw new Error("Ошибка удаления задачи");
   }
   return await response.json();
