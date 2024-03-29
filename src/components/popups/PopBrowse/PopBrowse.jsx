@@ -2,18 +2,21 @@ import { Link, useParams } from "react-router-dom";
 import { appRoutes } from "../../../lib/appRoutes";
 import Calendar from "../../Calendar/Calendar";
 import * as S from "./PopBrowse.styled";
+import { useTask } from "../../../hooks/useUser";
 
 function PopBrowse() {
   const { id } = useParams();
+  const{task} = useTask();
+  const currentTask = task.find((element) => id === element._id)
   return (
     <S.PopBrowse id="popBrowse">
       <S.PopBrowseContainer>
         <S.PopBrowseBlock>
           <S.PopBrowseContent>
             <S.PopBrowseTopBlock>
-              <S.PopBrowseTtl>Название задачи:{id}</S.PopBrowseTtl>
+              <S.PopBrowseTtl>Название задачи:{currentTask.title}</S.PopBrowseTtl>
               <div className="categories__theme theme-top _orange _active-category">
-                <p className="_orange">Web Design</p>
+                <p className="_orange">{currentTask.topic}</p>
               </div>
             </S.PopBrowseTopBlock>
             <S.PopBrowseStatus>
@@ -46,7 +49,7 @@ function PopBrowse() {
                     id="textArea01"
                     readOnly=""
                     placeholder="Введите описание задачи..."
-                    // defaultValue={""}
+                     defaultValue={currentTask.description}
                   />
                 </S.FormBrowseBlock>
               </S.PopBrowseForm>
