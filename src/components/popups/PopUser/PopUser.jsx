@@ -1,22 +1,27 @@
 import { Link } from "react-router-dom";
 import { appRoutes } from "../../../lib/appRoutes";
+import * as S from "./PopUser.styled";
+import {useUser} from "../../../hooks/useUser"
 
-function PopUser () {
-  return(<div className="header__pop-user-set pop-user-set" id="user-set-target">
-  {/* <a href="">x</a> */}
-  <p className="pop-user-set__name">Ivan Ivanov</p>
-  <p className="pop-user-set__mail">ivan.ivanov@gmail.com</p>
-  <div className="pop-user-set__theme">
-    <p>Темная тема</p>
-    <input type="checkbox" className="checkbox" name="checkbox" />
-  </div>
-  <Link to={appRoutes.EXIT}>
-  <span type="button" className="_hover03">
-   Выйти
-  </span>
-  </Link>
-</div>
-  )
-} 
+
+function PopUser() {
+  const {user} = useUser()
+  return (
+    <S.HeaderPopUserSet>
+      {/* <a href="">x</a> */}
+      <S.PopUserSetName>{user.name}</S.PopUserSetName>
+      <S.PopUserSetMail>{user.login}</S.PopUserSetMail>
+      <S.PopUserSetTheme>
+        <S.PopUserSetThemeP>Темная тема</S.PopUserSetThemeP>
+        <S.PopUserSetThemeInput type="checkbox" name="checkbox" />
+      </S.PopUserSetTheme>
+      <Link to={appRoutes.EXIT}>
+        <S.ExitButton>
+          Выйти
+        </S.ExitButton>
+      </Link>
+    </S.HeaderPopUserSet>
+  );
+}
 
 export default PopUser;

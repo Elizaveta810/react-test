@@ -1,5 +1,7 @@
 import { createContext, useState } from "react";
 
+
+//получаем пользователя из локального хранилища
 function getUserFromLocalStorage() {
   try {
     return JSON.parse(localStorage.getItem("user"));
