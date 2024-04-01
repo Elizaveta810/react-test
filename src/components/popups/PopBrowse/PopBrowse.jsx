@@ -3,11 +3,12 @@ import { appRoutes } from "../../../lib/appRoutes";
 import Calendar from "../../Calendar/Calendar";
 import * as S from "./PopBrowse.styled";
 import { useTask } from "../../../hooks/useUser";
-
+import * as St from "../../Card/Card.styled";
+import { topicHeader } from "../../../lib/topic";
 function PopBrowse() {
   const { id } = useParams();
   const{task} = useTask();
-  const currentTask = task.find((element) => id === element._id)
+  const currentTask = task.find((element) => id === element._id);
   return (
     <S.PopBrowse id="popBrowse">
       <S.PopBrowseContainer>
@@ -15,9 +16,9 @@ function PopBrowse() {
           <S.PopBrowseContent>
             <S.PopBrowseTopBlock>
               <S.PopBrowseTtl>Название задачи:{currentTask.title}</S.PopBrowseTtl>
-              <div className="categories__theme theme-top _orange _active-category">
-                <p className="_orange">{currentTask.topic}</p>
-              </div>
+              <St.CardTopic $themeColor={topicHeader[currentTask.topic]}>
+                <St.TopicText>{currentTask.topic}</St.TopicText>
+              </St.CardTopic>
             </S.PopBrowseTopBlock>
             <S.PopBrowseStatus>
               <S.StatusPSubttl>Статус</S.StatusPSubttl>

@@ -29,8 +29,9 @@ function PopNewCard() {
     e.preventDefault();
 
 const {title, topic, description} = newTask
-if(isEmptyFields([title.trim(), topic.trim(), description.trim(), selectedDate])){
+if(isEmptyFields([title.trim(), topic.trim(), description.trim(), selectedDate])){  
   setError('Заполни все поля')
+  showError('Заполни все поля');
   return
 }
 
@@ -62,7 +63,9 @@ if(isEmptyFields([title.trim(), topic.trim(), description.trim(), selectedDate])
       [name]: value,
     });
   };
-
+    function showError(errorText) {
+      return alert(errorText);
+    }
   return (
     <S.PopNewCardDiv>
       <S.PopNewCardConteinerDiv>
@@ -72,7 +75,6 @@ if(isEmptyFields([title.trim(), topic.trim(), description.trim(), selectedDate])
             <Link to={appRoutes.MAIN}>
               <S.PopNewCardCloseDiv>✖</S.PopNewCardCloseDiv>
             </Link>
-            {error}
             <S.PopNewCardWrapDiv>
               <S.PopNewCardForm>
                 <S.FormNewBlockDiv>
