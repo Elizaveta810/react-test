@@ -1,14 +1,35 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { appRoutes } from "../../../lib/appRoutes";
 import Calendar from "../../Calendar/Calendar";
 import * as S from "./PopBrowse.styled";
-import { useTask } from "../../../hooks/useUser";
+import { useTask, useUser } from "../../../hooks/useUser";
 import * as St from "../../Card/Card.styled";
 import { topicHeader } from "../../../lib/topic";
+import { deleteTodo } from "../../../api";
 function PopBrowse() {
   const { id } = useParams();
-  const{task} = useTask();
+  const{task, setTask} = useTask();
+  const {user} = useUser();
   const currentTask = task.find((element) => id === element._id);
+  const navigate = useNavigate();
+
+const deleteTask = () => {
+  deleteTodo({
+    token:user.token,
+    _id: id
+  })
+  .then((data) => {
+    setTask(data.tasks);
+    navigate(appRoutes.MAIN);
+  })
+  .catch((error) => {
+    alert (error);
+  })
+}
+
+
+
+
   return (
     <S.PopBrowse id="popBrowse">
       <S.PopBrowseContainer>
@@ -68,7 +89,7 @@ function PopBrowse() {
                 <S.BtnBrowseEditBtnBor>
                   Редактировать задачу
                 </S.BtnBrowseEditBtnBor>
-                <S.BtnBrowseEditBtnBor>Удалить задачу</S.BtnBrowseEditBtnBor>
+                <S.BtnBrowseEditBtnBor onClick={deleteTask}>Удалить задачу</S.BtnBrowseEditBtnBor>
               </S.BtnGroup>
 
               <Link to={appRoutes.MAIN}>

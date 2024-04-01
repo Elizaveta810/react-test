@@ -62,18 +62,21 @@ export async function changeTodo({
 }
 
 //Удаление задачи
-export async function DeleteTodo({ _id }) {
-  const response = await fetch(baseHost + "/" + _id, {
+export async function deleteTodo({ _id, token }) {
+  const response = await fetch(baseHost  + `/${_id}`, {
     method: "DELETE",
     headers: {
       Authorization: `Bearer ${token}`,
     },
   });
-  if (response.ok) {
-    throw new Error("Ошибка удаления задачи");
-  }
-  return await response.json();
+  if (!response.status === 201) {
+    throw new Error("Не удалось удалить задачу, попробуйте позже");
 }
+const data = await response.json();
+return data;
+}
+ 
+
 
 
 
