@@ -9,8 +9,7 @@ import { appRoutes } from "../../../lib/appRoutes";
 function PopNewCard() {
   const { user } = useUser();
 
-  const { putDownTask } = useTask();
-  // const { setTask } = useTask();
+  const { setTask } = useTask();
   const navigate = useNavigate();
   const [error, setError] = useState(null)
 
@@ -45,7 +44,7 @@ if(isEmptyFields([title.trim(), topic.trim(), description.trim(), selectedDate])
     postTodo({ taskData, token: user.token })
       .then((data) => {
         console.log(data)
-        putDownTask(data.tasks);
+        setTask(data.tasks);
         navigate(appRoutes.MAIN);
       })
       .catch((error) => {
