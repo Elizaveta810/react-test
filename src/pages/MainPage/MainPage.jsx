@@ -5,7 +5,8 @@ import Column from "../../components/Column/Column";
 import MainContent from "../../components/MainContent/MainContent";
 import { Outlet } from "react-router-dom";
 import { getTodos } from "../../api";
-import { useTask, useUser } from "../../hooks/useUser";
+import {useUser } from "../../hooks/useUser";
+import { useTask} from "../../hooks/useTask";
 import { Wrapper } from "../../styled/common/Common.styled";
 
 const statusList = [

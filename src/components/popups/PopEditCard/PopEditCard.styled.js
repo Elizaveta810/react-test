@@ -1,6 +1,9 @@
 import { styled } from "styled-components";
-import {hover01, hover03} from "../../../styled/common/Common.styled";
+import { hover01, hover03 } from "../../../styled/common/Common.styled";
 import { topicStyles } from "../../../lib/topic";
+
+
+
 
 export const PopBrowse = styled.div`
   width: 100%;
@@ -32,40 +35,6 @@ export const PopBrowseContainer = styled.div`
     justify-content: flex-start;
   }
 `;
-
-export const CategoriesTheme = styled.div`
-   display: inline-block;
-  width: auto;
-  height: 30px;
-  padding: 8px 20px;
-  border-radius: 24px;
-  margin-right: 7px;
-  opacity: 0.4;
-  /* background-color: #ffe4c2; */
-  /* color: #ff6d00; */
-  opacity: 1 !important;
-  display: block;
-  background-color: ${({ $themeColor }) =>
-    topicStyles[$themeColor]?.backgroundColor || "#94a6be"};
-
- 
-    color: ${({ $themeColor }) => topicStyles[$themeColor]?.color || "#ffffff"};
-  
-`;
-export const CategoriesThemeP = styled.p`
-  /* background-color: #ffe4c2; */
-  /* color: #ff6d00; */
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 14px;
-  white-space: nowrap;
-  
-`;
-
-
-
-
-
 export const PopBrowseBlock = styled.div`
   display: block;
   margin: 0 auto;
@@ -96,11 +65,40 @@ export const PopBrowseTopBlock = styled.div`
   margin-bottom: 18px;
 `;
 export const PopBrowseTtl = styled.h3`
-  color: #000;
+  color: #000000;
   font-size: 20px;
   font-weight: 600;
   line-height: 24px;
 `;
+export const CategoriesTheme = styled.div`
+   display: inline-block;
+  width: auto;
+  height: 30px;
+  padding: 8px 20px;
+  border-radius: 24px;
+  margin-right: 7px;
+  opacity: 0.4;
+  /* background-color: #ffe4c2; */
+  /* color: #ff6d00; */
+  opacity: 1 !important;
+  display: block;
+  background-color: ${({ $themeColor }) =>
+    topicStyles[$themeColor]?.backgroundColor || "#94a6be"};
+
+ 
+    color: ${({ $themeColor }) => topicStyles[$themeColor]?.color || "#ffffff"};
+  
+`;
+export const CategoriesThemeP = styled.p`
+  /* background-color: #ffe4c2; */
+  /* color: #ff6d00; */
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 14px;
+  white-space: nowrap;
+  
+`;
+
 export const PopBrowseStatus = styled.div`
   margin-bottom: 11px;
 `;
@@ -117,7 +115,6 @@ export const StatusThemes = styled.div`
   align-items: flex-start;
   justify-content: flex-start;
 `;
-
 export const StatusThemeHide = styled.div`
   border-radius: 24px;
   border: 0.7px solid rgba(148, 166, 190, 0.4);
@@ -126,9 +123,25 @@ export const StatusThemeHide = styled.div`
   margin-right: 7px;
   margin-bottom: 7px;
   display: block;
+`;
+export const StatusThemeP = styled.p`
+  font-size: 14px;
+  line-height: 1;
+  letter-spacing: -0.14px;
   background: #94a6be;
   color: #ffffff;
 `;
+export const StatusTheme = styled.div`
+  border-radius: 24px;
+  border: 0.7px solid rgba(148, 166, 190, 0.4);
+  color: #94a6be;
+  padding: 11px 14px 10px;
+  margin-right: 7px;
+  margin-bottom: 7px;
+  background: #94a6be;
+  color: #ffffff;
+`;
+
 export const StatusThemeHideP = styled.p`
   font-size: 14px;
   line-height: 1;
@@ -177,17 +190,30 @@ export const FormBrowseArea = styled.textarea`
     letter-spacing: -0.14px;
   }
 `;
-export const PopBrowseBtnBrowse = styled.div`
+export const PopBrowseBtnEditHide = styled.div`
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
   justify-content: space-between;
-   margin-top: 15px; 
+  display: block;
 `;
+
 export const BtnGroup = styled.div`
-margin-right: 8px;
+  margin-right: 8px;
+  width: 100%;
+  margin-right: 0px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 `;
-export const BtnBrowseEditBtnBor = styled.button`
+
+export const BtnBrowse = styled.div`
+  display: flex;
+  margin-right: 8px;
+  gap: 8px;
+  height: 30px;
+`;
+export const BtnEditButton = styled.button`
   border-radius: 4px;
   border: 0.7px solid var(--palette-navy-60, #565eef);
   outline: none;
@@ -197,6 +223,25 @@ export const BtnBrowseEditBtnBor = styled.button`
   padding: 0 14px;
   height: 30px;
   margin-right: 8px;
+  ${hover03}
+`;
+export const BtnBgA = styled.span`
+color: #565eef;
+`;
+export const BtnEditButtonBtmBor = styled.button`
+  height: 30px;
+  margin-bottom: 10px;
+  padding: 0 14px; 
+  border-radius: 4px;
+  background: #565eef;
+  border: none;
+  outline: none;
+  color: #ffffff;
+  border-radius: 4px;
+  border: 0.7px solid var(--palette-navy-60, #565EEF);
+  outline: none;
+  background: transparent;
+  color: #565EEF;
   ${hover03}
 `;
 export const BtnBrowseClose = styled.button`
@@ -211,3 +256,21 @@ export const BtnBrowseClose = styled.button`
   height: 30px;
   ${hover01}
 `;
+
+export const BtnBrowseEditBtnBor = styled.button`
+  border-radius: 4px;
+  border: 0.7px solid var(--palette-navy-60, #565eef);
+  outline: none;
+  background: transparent;
+  color: #565eef;
+  margin-bottom: 10px;
+  padding: 0 14px;
+  height: 30px;
+  margin-right: 8px;
+  ${hover03}
+`;
+
+
+
+
+

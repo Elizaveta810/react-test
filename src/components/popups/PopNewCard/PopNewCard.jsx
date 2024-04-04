@@ -3,7 +3,8 @@ import Calendar from "../../Calendar/Calendar";
 import * as S from "./PopNewCard.styled";
 import { Link, useNavigate } from "react-router-dom";
 import { postTodo } from "../../../api";
-import { useTask, useUser } from "../../../hooks/useUser";
+import {useUser } from "../../../hooks/useUser";
+import { useTask} from "../../../hooks/useTask";
 import { appRoutes } from "../../../lib/appRoutes";
 
 function PopNewCard() {
