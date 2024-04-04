@@ -86,14 +86,14 @@ function PopEditCard() {
               <S.BtnGroup>
                 <S.BtnBrowse>
                   <S.BtnEditButton>
-                    <S.BtnBgA>Сохранить</S.BtnBgA>
+                    Сохранить
                   </S.BtnEditButton>
 
                   <S.BtnEditButton>
-                    <S.BtnBgA>Отменить</S.BtnBgA>
+                    Отменить
                   </S.BtnEditButton>
-                  <S.BtnEditButton>
-                    <S.BtnBgA onClick={deleteTask}>Удалить задачу</S.BtnBgA>
+                  <S.BtnEditButton onClick={deleteTask}>
+                     Удалить задачу
                   </S.BtnEditButton>
                 </S.BtnBrowse>
 

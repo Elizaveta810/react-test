@@ -214,18 +214,19 @@ export const BtnBrowse = styled.div`
   height: 30px;
 `;
 export const BtnEditButton = styled.button`
-  height: 30px;
-  margin-bottom: 10px;
-  padding: 0 14px; 
   border-radius: 4px;
-  background: #565eef;
-  border: none;
+  border: 0.7px solid var(--palette-navy-60, #565eef);
   outline: none;
-  color: #ffffff;
-  ${hover01}
+  background: transparent;
+  color: #565eef;
+  margin-bottom: 10px;
+  padding: 0 14px;
+  height: 30px;
+  margin-right: 8px;
+  ${hover03}
 `;
 export const BtnBgA = styled.span`
-color: #FFFFFF;
+color: #565eef;
 `;
 export const BtnEditButtonBtmBor = styled.button`
   height: 30px;
