@@ -1,5 +1,9 @@
 import { styled } from "styled-components";
 import { hover01, hover03 } from "../../../styled/common/Common.styled";
+import { topicStyles } from "../../../lib/topic";
+
+
+
 
 export const PopBrowse = styled.div`
   width: 100%;
@@ -61,7 +65,7 @@ export const PopBrowseTopBlock = styled.div`
   margin-bottom: 18px;
 `;
 export const PopBrowseTtl = styled.h3`
-  color: #000;
+  color: #000000;
   font-size: 20px;
   font-weight: 600;
   line-height: 24px;
@@ -74,18 +78,25 @@ export const CategoriesTheme = styled.div`
   border-radius: 24px;
   margin-right: 7px;
   opacity: 0.4;
-  background-color: #ffe4c2;
-  color: #ff6d00;
+  /* background-color: #ffe4c2; */
+  /* color: #ff6d00; */
   opacity: 1 !important;
   display: block;
+  background-color: ${({ $themeColor }) =>
+    topicStyles[$themeColor]?.backgroundColor || "#94a6be"};
+
+ 
+    color: ${({ $themeColor }) => topicStyles[$themeColor]?.color || "#ffffff"};
+  
 `;
 export const CategoriesThemeP = styled.p`
-  background-color: #ffe4c2;
-  color: #ff6d00;
+  /* background-color: #ffe4c2; */
+  /* color: #ff6d00; */
   font-size: 14px;
   font-weight: 600;
   line-height: 14px;
   white-space: nowrap;
+  
 `;
 
 export const PopBrowseStatus = styled.div`

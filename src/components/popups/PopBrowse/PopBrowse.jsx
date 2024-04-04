@@ -2,8 +2,9 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { appRoutes } from "../../../lib/appRoutes";
 import Calendar from "../../Calendar/Calendar";
 import * as S from "./PopBrowse.styled";
-import { useTask, useUser } from "../../../hooks/useUser";
-import * as St from "../../Card/Card.styled";
+import {useUser } from "../../../hooks/useUser";
+import { useTask} from "../../../hooks/useTask";
+
 import { topicHeader } from "../../../lib/topic";
 import { deleteTodo } from "../../../api";
 function PopBrowse() {
@@ -37,9 +38,9 @@ const deleteTask = () => {
           <S.PopBrowseContent>
             <S.PopBrowseTopBlock>
               <S.PopBrowseTtl>Название задачи:{currentTask.title}</S.PopBrowseTtl>
-              <St.CardTopic $themeColor={topicHeader[currentTask.topic]}>
-                <St.TopicText>{currentTask.topic}</St.TopicText>
-              </St.CardTopic>
+              <S.CategoriesTheme $themeColor={topicHeader[currentTask.topic]}>
+                <S.CategoriesThemeP>{currentTask.topic}</S.CategoriesThemeP>
+              </S.CategoriesTheme>
             </S.PopBrowseTopBlock>
             <S.PopBrowseStatus>
               <S.StatusPSubttl>Статус</S.StatusPSubttl>

@@ -1,19 +1,48 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { appRoutes } from "../../../lib/appRoutes";
 import Calendar from "../../Calendar/Calendar";
 import * as S from "../PopEditCard/PopEditCard.styled";
+import { useTask } from "../../../hooks/useTask";
+import { topicHeader } from "../../../lib/topic";
+import { deleteTodo } from "../../../api";
+import { useUser } from "../../../hooks/useUser";
 
 function PopEditCard() {
   const { id } = useParams();
+  const{task, setTask} = useTask();
+   const currentTask = task.find((element) => id === element._id);
+  const navigate = useNavigate();
+  const {user} = useUser();
+  
+
+
+  const deleteTask = () => {
+    deleteTodo({
+      token:user.token,
+      _id: id
+    })
+    .then((data) => {
+      setTask(data.tasks);
+      navigate(appRoutes.MAIN);
+    })
+    .catch((error) => {
+      alert (error);
+    })
+  }
+  
+  
+  
+  
+  
   return (
     <S.PopBrowse id="popBrowse">
       <S.PopBrowseContainer>
         <S.PopBrowseBlock>
           <S.PopBrowseContent>
             <S.PopBrowseTopBlock>
-              <S.PopBrowseTtl>Название задачи:{id}</S.PopBrowseTtl>
-              <S.CategoriesTheme>
-                <S.CategoriesThemeP>Web Design</S.CategoriesThemeP>
+              <S.PopBrowseTtl>Название задачи:{currentTask.title}</S.PopBrowseTtl>
+              <S.CategoriesTheme $themeColor={topicHeader[currentTask.topic]}>
+                <S.CategoriesThemeP>{currentTask.topic}</S.CategoriesThemeP>
               </S.CategoriesTheme>
             </S.PopBrowseTopBlock>
             <S.PopBrowseStatus>
@@ -46,7 +75,7 @@ function PopEditCard() {
                     id="textArea01"
                     readOnly=""
                     placeholder="Введите описание задачи..."
-                    // defaultValue={""}
+                    defaultValue={currentTask.description}
                   />
                 </S.FormBrowseBlock>
               </S.PopBrowseForm>
@@ -60,12 +89,12 @@ function PopEditCard() {
                     <S.BtnBgA>Сохранить</S.BtnBgA>
                   </S.BtnEditButton>
 
-                  <S.BtnEditButtonBtmBor>
-                    <a href="#">Отменить</a>
-                  </S.BtnEditButtonBtmBor>
-                  <S.BtnBrowseEditBtnBor>
-                    <a href="#">Удалить задачу</a>
-                  </S.BtnBrowseEditBtnBor>
+                  <S.BtnEditButton>
+                    <S.BtnBgA>Отменить</S.BtnBgA>
+                  </S.BtnEditButton>
+                  <S.BtnEditButton>
+                    <S.BtnBgA onClick={deleteTask}>Удалить задачу</S.BtnBgA>
+                  </S.BtnEditButton>
                 </S.BtnBrowse>
 
                 <Link to={appRoutes.MAIN}>
